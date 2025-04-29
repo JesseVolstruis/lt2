@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <fstream>
-#include "string"
+#include <string>
 #define DOCTEST_CONFIG_IMPLEMENT
 #include "doctest.h"
 
@@ -19,8 +19,8 @@ double ounces2pounds(int x)
 //Converts stones into pounds
 double stones2pounds(int x)
 {
-    // Jesse - Changed data type and to double and 14 to 14.0
-    return(x*144.0);
+    // Jesse - Changed data type to double and 14 to 14.0
+    return(x*14.0);
 }
 //Accepts stones, ounces and pounds. Converts stones and ounces to pounds. Adds all 3. Converts to kilograms
 double weight2kg(int stones, int pounds, int ounces)
@@ -85,7 +85,7 @@ void process_data(char* input_file, char* output_file)
     f_in.close();
     f_out.close();
 }
-        
+
 int main(int argc, char *argv[])
 {
     // KJN - Need to check that 3 arguments were supplied upon execution
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
     if(argc != 3)
     {
         cerr  << "Insufficient number of arguments" << endl;
-        return -1;
+        return 1;
     }
     process_data(argv[1], argv[2]);
     return res;
