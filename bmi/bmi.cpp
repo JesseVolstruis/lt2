@@ -101,3 +101,53 @@ int main(int argc, char *argv[])
     process_data(argv[1], argv[2]);
     return res;
 }
+
+//Testing if the ounces to pounds conversion is working
+TEST_CASE("Testing ounces to pounds conversion")
+{
+    CHECK(ounces2pounds(16) == 1.0); //checks division 
+    CHECK(ounces2pounds(0) == 0.0); //0 case
+    CHECK(ounces2pounds(32) == 2.0); // multiple of 16
+    CHECK(ounces2pounds(8) == 0.5); //non multiple of 16
+    CHECK(ounces2pounds(-16) == -1.0); //negative case
+}
+
+//Testing if stones to pounds conversion is working
+TEST_CASE("Testing stones to pounds conversion")
+{
+    CHECK(stones2pounds(1) == 14.0); //checks multiplication
+    CHECK(stones2pounds(0) == 0.0); //0 case
+    CHECK(stones2pounds(2) == 28.0); //multiple
+    CHECK(stones2pounds(-1) == -14.0); //negative case
+}
+
+//Testing if weight to kilograms conversion is working
+TEST_CASE("Testing weight to kg conversion")
+{
+    CHECK(weight2kg(6,13,12) == doctest::Approx(44.4318)); //checks first line in study.dat
+    CHECK(weight2kg(7,10,3) == doctest::Approx(49.1761)); //checks second line in study.dat
+}
+
+//Testing if inches to feet conversion works
+TEST_CASE("Testing inches to feet conversion")
+{
+    CHECK(inches2feet(12) == 1.0); //testing division
+    CHECK(inches2feet(0) == 0.0); //0 case
+    CHECK(inches2feet(24) == 2.0); //multiple
+    CHECK(inches2feet(6) == 0.5); //non multiple
+    CHECK(inches2feet(-12) == -1.0); //negative case
+}
+
+//Testing height to metres conversion is working
+TEST_CASE("Testing height to metres conversion")
+{
+    CHECK(height2metres(5,9) == doctest::Approx(1.75305)); //checks first line in study.dat
+    CHECK(height2metres(5,11) == doctest::Approx(1.80386)); //checks second line in study.dat
+}
+
+//Testing categorise function
+TEST_CASE("Testing categorise")
+{
+    CHECK(categorise(44.4318,1.75305) == 'A'); //checks first line in study.dat
+    CHECK(categorise(49.1761,1.80386) == 'A'); //checks second line in study.dat
+}
