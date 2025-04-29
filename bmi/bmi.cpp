@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#define DOCTEST_CONFIG_IMPLEMENT
+#include "doctest.h"
 
 using namespace std;
 
@@ -87,5 +89,15 @@ void process_data(char* input_file, char* output_file)
 int main(int argc, char *argv[])
 {
     // KJN - Need to check that 3 arguments were supplied upon execution
+    // Jesse - Added check for number of arguments. Gives error message if failed
+    doctest::Context context;
+    int res = context.run();
+    if(context.shouldExit())return res;
+    if(argc != 3)
+    {
+        cerr  << "Insufficient number of arguments" << endl;
+        return 1;
+    }
     process_data(argv[1], argv[2]);
+    return res;
 }
